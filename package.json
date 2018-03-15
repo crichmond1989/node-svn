@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/FellowMD/node-svn.git"
+    "url": "git://github.com/crichmond1989/node-svn.git"
   },
   "keywords": [
     "svn"
