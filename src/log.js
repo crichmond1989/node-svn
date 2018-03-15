@@ -4,7 +4,7 @@ var Revision = require('./Revision.js');
 
 
 
-module.exports = function(options, next){
+module.exports = function (options, next) {
   var args = ['log', '--xml'];
   options = options || {};
   args = args.concat(limit(options));
@@ -17,7 +17,7 @@ module.exports = function(options, next){
     args = args.concat([this.remote]);
   }
 
-  var child = spawn('svn', args, {cwd: this.local});
+  var child = spawn('svn', args, { cwd: this.local });
   var stdout = '';
 
   child.stdout.on('data', function (data) {
@@ -31,9 +31,11 @@ module.exports = function(options, next){
   child.on('close', function (code) {
     if (code !== 0) {
       console.log('svn log exited with code ' + code);
+
+      next(new Error(stdout));
     } else {
-      parseString(stdout, function(error, result){
-        if(error) return next(error);
+      parseString(stdout, function (error, result) {
+        if (error) return next(error);
         result = result.log.logentry.map(Revision.from_xml);
         next(error, result);
       });
@@ -42,14 +44,14 @@ module.exports = function(options, next){
 
 };
 
-function limit(options){
-  if(options.limit) return ['-l', options.limit.toString()];
+function limit(options) {
+  if (options.limit) return ['-l', options.limit.toString()];
   return [];
 }
 
-function revision(options){
-  if(options.revision) return ['-r', options.revision.toString()];
-  if(options.start){
+function revision(options) {
+  if (options.revision) return ['-r', options.revision.toString()];
+  if (options.start) {
     var rev = [];
     rev.push(options.start.toString());
     rev.push(':');
