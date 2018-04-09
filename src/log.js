@@ -11,13 +11,21 @@ module.exports = function (options, next) {
   args = args.concat(revision(options));
   // -- diff not supported in xml mode command = command.concat(['--diff']);
   args = args.concat(['-v']);
+
   if (options.remote) {
     args = args.concat([options.remote]);
   } else if (this.remote) {
     args = args.concat([this.remote]);
   }
 
-  var child = spawn('svn', args, { cwd: this.local });
+  if (options.targets) {
+    args = args.concat(options.targets);
+  }
+
+  var child = spawn('svn', args, {
+    cwd: this.local
+  });
+
   var stdout = '';
   var stderr = '';
 
