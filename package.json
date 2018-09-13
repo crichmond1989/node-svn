@@ -21,6 +21,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
+    "moment": "^2.22.2",
     "xml2js": "~0.2.8"
   },
   "devDependencies": {
