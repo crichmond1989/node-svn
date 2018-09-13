@@ -11,11 +11,11 @@ export default class {
         this.options = options;
     }
 
-    info() {
-        return new info(this.options).exec();
+    info(options) {
+        return new info({ ...this.options, ...options }).exec();
     }
 
-    log() {
-        return new log(this.options).exec();
+    log(options) {
+        return new log({ ...this.options, ...options }).exec();
     }
 }

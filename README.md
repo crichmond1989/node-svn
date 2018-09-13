@@ -3,26 +3,16 @@ I got tired of all the spawn() calls needed to run our custom Continuous Integra
 
 Usage
 ------
-`npm install svn`
+
+```console
+npm install @crichmond/svn
+```
+
 ```js
-var SVN = require('svn');
-var svn = new SVN('./working_copy');
+import svn from "@crichmond/svn";
 
-svn.get_remote(function(error, result){
-  console.log('remote is:', result);
-});
+const client = new svn({source: "C:/Repos/MyProject"});
 
-svn.log({limit: 5}, function(error, result){
-  console.log('The last 5 commit messages are:');
-  result.forEach(function(rev){
-    console.log(rev.message);
-  });
-});
-
-svn.log({start: 4426, end:'HEAD'}, function(error, result){
-  console.log('Changes since revision 4426:');
-  result.forEach(function(rev){
-    console.log(rev.message);
-  });
-})
+const info = await client.info({ recursive: true });
+const log = await client.log({ revision: 3003 });
 ```
