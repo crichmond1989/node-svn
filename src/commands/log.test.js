@@ -1,9 +1,25 @@
 import log from "./log.js";
 
-it("returns: 1 result", async () => {
-    const result = await new log({ source: "https://svn.code.sf.net/p/svnbook/source", limit: 1 }).exec();
+const svnUrl = "https://svn.code.sf.net/p/svnbook/source";
 
-    expect(result).toBeTruthy();
+it("returns: 1 result without path", async () => {
+    const result = await new log({ source: svnUrl, limit: 1 }).exec();
+
+    expect(result).toHaveLength(1);
+    expect(result[0].paths).toBeFalsy();
+})
+
+it("returns: 1 result with path", async () => {
+    const result = await new log({ source: svnUrl, limit: 1, paths: true }).exec();
+
+    expect(result).toHaveLength(1);
+    expect(result[0].paths).toBeTruthy();
+})
+
+it("returns: 2 results", async () => {
+    const result = await new log({ source: svnUrl, limit: 2 }).exec();
+
+    expect(result).toHaveLength(2);
 })
 
 it("throws: source is required", async () => {

@@ -15,7 +15,7 @@
     "svn"
   ],
   "files": [
-    "src/"
+    "dist/"
   ],
   "author": "Chris Richmond",
   "license": "MIT",
