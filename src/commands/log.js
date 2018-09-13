@@ -19,13 +19,19 @@ export default class {
     async exec() {
         const args = this.parseArgs();
 
-        const xml = await spawn("svn", args);
+        const result = await spawn("svn", args);
 
-        return await this.transform(xml);
+        if (this.options.json)
+            return await this.transform(result);
+
+        return result;
     }
 
     parseArgs() {
-        const args = ["log", "--xml"];
+        const args = ["log"];
+
+        if (this.options.json || this.options.xml)
+            args.push("--xml");
 
         if (this.options.limit)
             args.push(...["-l", this.options.limit.toString()]);
