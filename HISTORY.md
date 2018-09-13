@@ -1,3 +1,7 @@
+1.0.0
+===
+* Published to NPM as @crichmond1989/svn
+
 0.4.0
 ===
 * Added error pattern for non-zero exit code in log call

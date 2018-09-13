@@ -17,4 +17,4 @@ SVN.prototype.info = require("./parse_info.js");
 
 SVN.prototype.externals = require('./externals.js');
 
-SVN.prototype.log = require('./log.js');
+SVN.prototype.log = require('./commands/log.js');

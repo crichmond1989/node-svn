@@ -1,22 +1,35 @@
 {
-  "name": "svn",
-  "version": "0.5.1",
+  "name": "@crichmond1989/svn",
+  "version": "1.0.0",
   "description": "SVN interface for js",
   "main": "src/svn.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack -p",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/crichmond1989/node-svn.git"
+    "url": "git://github.com/crichmond1989/svn.git"
   },
   "keywords": [
     "svn"
   ],
-  "author": "Aaron Sikes",
+  "files": [
+    "src/"
+  ],
+  "author": "Chris Richmond",
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
     "xml2js": "~0.2.8"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0",
+    "webpack": "^4.18.0",
+    "webpack-command": "^0.4.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }
