@@ -21,7 +21,7 @@ export default class {
 
         const result = await spawn("svn", args);
 
-        if (this.options.json)
+        if (this.options.format == "json")
             return await this.transform(result);
 
         return result;
@@ -30,7 +30,7 @@ export default class {
     parseArgs() {
         const args = ["info"];
 
-        if (this.options.json || this.options.xml)
+        if (this.options.format == "json" || this.options.format == "xml")
             args.push("--xml");
 
         if (this.options.recursive)

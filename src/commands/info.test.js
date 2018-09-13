@@ -4,7 +4,7 @@ import info from "./info.js";
 const svnLocal = config.testSvnLocal;
 const svnUrl = config.testSvnUrl;
 
-const getRequest = () => ({ source: svnLocal, json: true });
+const getRequest = () => ({ source: svnLocal, format: "json" });
 
 it("uses: recursive", async () => {
     const result = await new info({ ...getRequest(), recursive: true }).exec();

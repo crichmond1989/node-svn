@@ -6,7 +6,7 @@ import log from "./log.js";
 const svnLocal = config.testSvnLocal;
 const svnUrl = config.testSvnUrl;
 
-const getRequest = () => ({ source: svnLocal, json: true });
+const getRequest = () => ({ source: svnLocal, format: "json" });
 
 it("args: default start to 1", () => {
     const result = new log({ ...getRequest(), end: "20180913" }).parseArgs();

@@ -5,7 +5,7 @@ export default class {
     constructor(options) {
         options = options || {};
 
-        options.json = options.json === false ? false : true;
+        options.format = options.format || "json";
         options.source = options.source || ".";
 
         this.options = options;
