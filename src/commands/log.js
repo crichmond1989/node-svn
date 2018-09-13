@@ -60,6 +60,9 @@ export default class {
 
         args.push(this.options.source);
 
+        if (this.options.targets)
+            args.push(...this.options.targets);
+
         return args;
     }
 

@@ -74,6 +74,20 @@ it("uses: end", async () => {
     expect(result[0].date.valueOf()).toBeLessThanOrEqual(moment(end).valueOf());
 })
 
+it("uses: 1 target", async () => {
+    const targets = ["branches/1.8/tools"];
+    const result = await new log({ source: svnUrl, limit: 1, targets }).exec();
+
+    expect(result).toHaveLength(1);
+})
+
+it("uses: 2 targets", async () => {
+    const targets = ["branches/1.8/tools", "branches/1.8/vi"];
+    const result = await new log({ source: svnUrl, limit: 1, targets }).exec();
+
+    expect(result).toHaveLength(1);
+})
+
 it("returns: 1 result without path", async () => {
     const result = await new log({ source: svnLocal, limit: 1 }).exec();
 
@@ -127,5 +141,14 @@ it("throws: unable to connect to a repository", async () => {
         fail();
     } catch (error) {
         expect(error.message).toMatch(/Unable to connect to a repository/);
+    }
+})
+
+it("throws: when specifying working copy paths, only one target may be given", async () => {
+    try {
+        await new log({ source: svnLocal, limit: 1, targets: ["does not matter"] }).exec();
+        fail();
+    } catch (error) {
+        expect(error.message).toMatch(/When specifying working copy paths, only one target may be given/);
     }
 })
