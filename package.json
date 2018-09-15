@@ -1,8 +1,9 @@
 {
   "name": "@crichmond1989/svn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SVN interface for js",
-  "main": "dist/main.js",
+  "main": "dist/main",
+  "typings": "dist/main",
   "scripts": {
     "build": "webpack -p",
     "test": "jest"
