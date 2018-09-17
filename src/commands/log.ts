@@ -1,11 +1,16 @@
-import moment from "moment";
+import * as moment from "moment";
 
-import parseXml from "../parseXml.js";
+import LogOptions from "./logOptions";
+import LogResult from "./logResult";
+
+import parseXml from "../parseXml";
 import spawn from "../spawn";
 
 export default class {
-    constructor(options) {
-        options = options || {};
+    options: LogOptions;
+
+    constructor(options?: LogOptions) {
+        options = options || new LogOptions();
 
         if (!options.source)
             throw new Error("source is required");
@@ -16,7 +21,7 @@ export default class {
         this.options = options;
     }
 
-    async exec() {
+    async exec(): Promise<any> {
         const args = this.parseArgs();
 
         const result = await spawn("svn", args);
@@ -27,7 +32,7 @@ export default class {
         return result;
     }
 
-    parseArgs() {
+    parseArgs(): string[] {
         const args = ["log"];
 
         if (this.options.format == "json" || this.options.format == "xml")
@@ -72,13 +77,13 @@ export default class {
         return args;
     }
 
-    async transform(xml) {
+    async transform(xml: string): Promise<LogResult[]> {
         const obj = await parseXml(xml);
 
         if (!obj.log.logentry)
             return [];
 
-        return obj.log.logentry.map(x => ({
+        return obj.log.logentry.map(x => new LogResult({
             revision: parseInt(x.$.revision, 10),
             author: x.author[0],
             date: moment(x.date[0]),

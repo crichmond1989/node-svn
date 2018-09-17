@@ -1,11 +1,15 @@
-import moment from "moment";
+import * as moment from "moment";
 
-import parseXml from "../parseXml.js";
+import InfoOptions from "./infoOptions";
+
+import parseXml from "../parseXml";
 import spawn from "../spawn";
 
 export default class {
-    constructor(options) {
-        options = options || {};
+    options: InfoOptions;
+
+    constructor(options: InfoOptions) {
+        options = options || new InfoOptions();
 
         if (!options.source)
             throw new Error("source is required");
@@ -16,7 +20,7 @@ export default class {
         this.options = options;
     }
 
-    async exec() {
+    async exec(): Promise<any> {
         const args = this.parseArgs();
 
         const result = await spawn("svn", args);
@@ -27,7 +31,7 @@ export default class {
         return result;
     }
 
-    parseArgs() {
+    parseArgs(): string[] {
         const args = ["info"];
 
         if (this.options.format == "json" || this.options.format == "xml")
@@ -44,7 +48,7 @@ export default class {
         return args;
     }
 
-    async transform(xml) {
+    async transform(xml: string): Promise<any[]> {
         const obj = await parseXml(xml);
 
         if (!obj.info.entry)

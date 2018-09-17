@@ -1,7 +1,7 @@
 import { spawn } from "child_process";
 
-export default (command, args) => {
-    return new Promise((res, rej) => {
+export default function (command: string, args: string[]): Promise<string> {
+    return new Promise<string>((res, rej) => {
         let stdout = "";
         let stderr = "";
 
