@@ -31,7 +31,9 @@ jobs:
 
       - persist_to_workspace:
           root: ~/repo
-          paths: .
+          paths:
+            - ./*
+            - ./dist
 
       - run: npm run cover
 
