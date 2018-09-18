@@ -32,8 +32,10 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths:
-            - ./
-            - ./dist
+            - LICENSE
+            - package.json
+            - README.md
+            - dist
 
       - run: npm run cover
 
