@@ -26,3 +26,6 @@ jobs:
       - run: npm run build
 
       - run: npm run cover
+
+      - store_test_results:
+         - path: /test-results
