@@ -4,7 +4,6 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "outDir": "./dist",
-        "sourceMap": true,
         "target": "es6"
     },
     "include": [
