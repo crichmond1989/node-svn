@@ -1,12 +1,45 @@
 {
   "name": "@crichmond1989/svn",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "SVN interface for js",
-  "main": "dist/main",
-  "typings": "dist/main",
+  "main": "dist/app",
+  "typings": "dist/app",
   "scripts": {
-    "build": "webpack -p",
-    "test": "jest"
+    "babel": "babel src --out-dir dist --extensions '.ts'",
+    "build": "npm run types && npm run babel",
+    "cover": "jest --coverage",
+    "lint": "tslint --project .",
+    "test": "jest",
+    "types": "tsc --emitDeclarationOnly"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.ts$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "testRegex": "/src/.*\\.test\\.ts$",
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "coverageReporters": [
+      "text",
+      "cobertura"
+    ]
+  },
+  "jest-junit": {
+    "classNameTemplate": "{filename}",
+    "output": "./test-results/junit/results.xml",
+    "suiteNameTemplate": "{filename}",
+    "titleTemplate": "{classname}: {title}"
   },
   "repository": {
     "type": "git",
@@ -22,17 +55,20 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "moment": "^2.22.2",
     "xml2js": "~0.2.8"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.10.1",
+    "babel-preset-minify": "^0.5.0-alpha.3cc09dcf",
     "jest": "^23.6.0",
-    "webpack": "^4.18.0",
-    "webpack-cli": "^3.1.0",
-    "webpack-node-externals": "^1.7.2"
+    "jest-junit": "^5.1.0",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.3"
   }
 }

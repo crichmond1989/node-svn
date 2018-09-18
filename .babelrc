@@ -1,15 +1,7 @@
 {
-    "plugins": [
-        "transform-object-rest-spread"
-    ],
     "presets": [
-        [
-            "env",
-            {
-                "targets": {
-                    "node": 6
-                }
-            }
-        ]
+        "@babel/env",
+        "@babel/typescript",
+        "minify"
     ]
 }

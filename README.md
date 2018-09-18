@@ -5,11 +5,11 @@ Usage
 ------
 
 ```console
-npm install @crichmond/svn
+npm install @crichmond1989/svn
 ```
 
 ```js
-import svn from "@crichmond/svn";
+import svn from "@crichmond1989/svn";
 
 const client = new svn({source: "C:/Repos/MyProject"});
 
