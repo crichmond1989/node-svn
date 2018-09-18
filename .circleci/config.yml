@@ -37,6 +37,18 @@ jobs:
             - README.md
             - dist
 
+      - store_artifacts:
+          path: LICENSE
+
+      - store_artifacts:
+          path: package.json
+
+      - store_artifacts:
+          path: README.md
+
+      - store_artifacts:
+          path: dist
+
       - run: npm run cover
 
       - store_test_results:
