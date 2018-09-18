@@ -28,4 +28,4 @@ jobs:
       - run: npm run cover
 
       - store_test_results:
-         - path: /test-results
+          path: /test-results
