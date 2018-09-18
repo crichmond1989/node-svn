@@ -1,4 +1,5 @@
 import InfoOptions from "./infoOptions";
+import InfoResult from "./infoResult";
 
 import parseXml from "../parseXml";
 import spawn from "../spawn";
@@ -18,7 +19,7 @@ export default class {
         this.options = options;
     }
 
-    async exec(): Promise<string | any> {
+    async exec(): Promise<string | InfoResult[]> {
         const args = this.parseArgs();
 
         const result = await spawn("svn", args);
@@ -46,13 +47,13 @@ export default class {
         return args;
     }
 
-    async transform(xml: string): Promise<any[]> {
+    async transform(xml: string): Promise<InfoResult[]> {
         const obj = await parseXml(xml);
 
         if (!obj.info.entry)
             return [];
 
-        return obj.info.entry.map(x => ({
+        return obj.info.entry.map(x => new InfoResult({
             revision: parseInt(x.$.revision, 10),
             kind: x.$.kind,
             path: x.$.path,

@@ -1,8 +1,38 @@
-SVN Handles for node.
-I got tired of all the spawn() calls needed to run our custom Continuous Integration server.
+# @crichmond1989/svn
 
-Usage
-------
+NodeJS wrapper for SVN.
+
+## Preconditions
+
+* SVN client installed
+* SVN client in PATH
+
+[Apache Subversion Packages](https://subversion.apache.org/packages.html)
+
+### CentOS
+
+```console
+yum install subversion
+```
+
+### Mac OS X
+
+```console
+brew options subversion
+brew install (OPTIONS) subversion
+```
+
+### Ubuntu
+
+```console
+apt-get install subversion
+```
+
+### Windows
+
+[TortoiseSVN](https://tortoisesvn.net/downloads.html)
+
+## Usage
 
 ```console
 npm install @crichmond1989/svn

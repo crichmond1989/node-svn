@@ -1,8 +1,10 @@
 import AppOptions from "./appOptions";
 import Info from "./commands/info";
 import InfoOptions from "./commands/infoOptions";
+import InfoResult from "./commands/infoResult";
 import Log from "./commands/log";
 import LogOptions from "./commands/logOptions";
+import LogResult from "./commands/logResult";
 
 export default class {
     options: AppOptions;
@@ -16,11 +18,11 @@ export default class {
         this.options = options;
     }
 
-    info(options: InfoOptions): Promise<any> {
+    info(options: InfoOptions): Promise<string | InfoResult[]> {
         return new Info({ ...this.options, ...options }).exec();
     }
 
-    log(options: LogOptions): Promise<any> {
+    log(options: LogOptions): Promise<string | LogResult[]> {
         return new Log({ ...this.options, ...options }).exec();
     }
 }

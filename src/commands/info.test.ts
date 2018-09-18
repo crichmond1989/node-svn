@@ -1,5 +1,6 @@
 import Config from "../config";
 import Info from "./info";
+import InfoResult from "./infoResult";
 
 const svnLocal = Config.testSvnLocal;
 const svnUrl = Config.testSvnUrl;
@@ -17,6 +18,6 @@ describe("uses", () => {
         const revision = 5615;
         const result = await new Info({ ...getRequest(), revision }).exec();
 
-        expect(result[0].revision).toBe(revision);
+        expect((<InfoResult[]>result)[0].revision).toBe(revision);
     })
 })
