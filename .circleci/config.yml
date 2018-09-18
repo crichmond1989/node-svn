@@ -8,7 +8,7 @@ jobs:
     <<: *defaults
 
     docker:
-      - image: crichmond1989/svn:node-8-slim
+      - image: crichmond1989/svn:node-8-alpine
 
     steps:
       - checkout
@@ -58,7 +58,7 @@ jobs:
     <<: *defaults
 
     docker:
-      - image: node:8-slim
+      - image: node:8-alpine
 
     steps:
       - attach_workspace:
