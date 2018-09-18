@@ -41,6 +41,9 @@ jobs:
   deploy:
     <<: *defaults
 
+    docker:
+      - image: node:8-slim
+
     steps:
       - attach_workspace:
           at: ~/repo
