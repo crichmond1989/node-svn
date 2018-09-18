@@ -50,9 +50,6 @@ export default class {
     async transform(xml: string): Promise<InfoResult[]> {
         const obj = await parseXml(xml);
 
-        if (!obj.info.entry)
-            return [];
-
         return obj.info.entry.map(x => new InfoResult({
             revision: parseInt(x.$.revision, 10),
             kind: x.$.kind,
