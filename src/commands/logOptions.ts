@@ -1,10 +1,10 @@
 import AppOptions from "../appOptions";
 
 export default class extends AppOptions {
-    end?: any;
+    end?: Date;
     limit?: number;
     revision?: number;
     paths?: boolean;
-    start?: any;
+    start?: Date;
     targets?: string[];
 }

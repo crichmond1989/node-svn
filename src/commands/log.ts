@@ -1,5 +1,4 @@
-import * as moment from "moment";
-
+import DateFormatter from "../dateFormatter";
 import LogOptions from "./logOptions";
 import LogResult from "./logResult";
 
@@ -21,7 +20,7 @@ export default class {
         this.options = options;
     }
 
-    async exec(): Promise<any> {
+    async exec(): Promise<string | LogResult[]> {
         const args = this.parseArgs();
 
         const result = await spawn("svn", args);
@@ -47,21 +46,8 @@ export default class {
         if (this.options.start || this.options.end) {
             args.push("-r");
 
-            let formattedStart = "1";
-
-            if (this.options.start) {
-                const startMt = moment.utc(this.options.start, moment.ISO_8601, true);
-
-                formattedStart = startMt.isValid() ? `{${startMt.format("YYYY-MM-DD")}}` : "1";
-            }
-
-            let formattedEnd = "HEAD";
-
-            if (this.options.end) {
-                const endMt = moment.utc(this.options.end, moment.ISO_8601, true);
-
-                formattedEnd = endMt.isValid() ? `{${endMt.format("YYYY-MM-DD")}}` : "HEAD";
-            }
+            const formattedStart = this.options.start ? DateFormatter.toSvnFormat(this.options.start) : "1";
+            const formattedEnd = this.options.end ? DateFormatter.toSvnFormat(this.options.end) : "HEAD";
 
             args.push(`${formattedStart}:${formattedEnd}`);
         }
@@ -86,7 +72,7 @@ export default class {
         return obj.log.logentry.map(x => new LogResult({
             revision: parseInt(x.$.revision, 10),
             author: x.author[0],
-            date: moment(x.date[0]),
+            date: new Date(x.date[0]),
             message: x.msg[0],
             paths: x.paths && x.paths[0].path.map(y => y._)
         }));

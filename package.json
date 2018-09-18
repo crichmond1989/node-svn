@@ -1,11 +1,12 @@
 {
   "name": "@crichmond1989/svn",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "SVN interface for js",
   "main": "dist/app",
   "typings": "dist/app",
   "scripts": {
     "build": "tsc",
+    "lint": "tslint --project .",
     "test": "jest"
   },
   "jest": {
@@ -37,7 +38,6 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "moment": "^2.22.2",
     "xml2js": "~0.2.8"
   },
   "devDependencies": {
@@ -45,6 +45,7 @@
     "@types/node": "^10.10.1",
     "jest": "^23.6.0",
     "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
     "typescript": "^3.0.3"
   }
 }

@@ -2,6 +2,7 @@ import AppOptions from "./appOptions";
 import Info from "./commands/info";
 import InfoOptions from "./commands/infoOptions";
 import Log from "./commands/log";
+import LogOptions from "./commands/logOptions";
 
 export default class {
     options: AppOptions;
@@ -19,7 +20,7 @@ export default class {
         return new Info({ ...this.options, ...options }).exec();
     }
 
-    log(options): Promise<any> {
+    log(options: LogOptions): Promise<any> {
         return new Log({ ...this.options, ...options }).exec();
     }
 }

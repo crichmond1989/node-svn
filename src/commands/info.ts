@@ -1,5 +1,3 @@
-import * as moment from "moment";
-
 import InfoOptions from "./infoOptions";
 
 import parseXml from "../parseXml";
@@ -20,7 +18,7 @@ export default class {
         this.options = options;
     }
 
-    async exec(): Promise<any> {
+    async exec(): Promise<string | any> {
         const args = this.parseArgs();
 
         const result = await spawn("svn", args);
@@ -67,7 +65,7 @@ export default class {
             commit: {
                 revision: parseInt(x.commit[0].$.revision, 10),
                 author: x.commit[0].author[0],
-                date: moment(x.commit[0].date[0])
+                date: new Date(x.commit[0].date[0])
             }
         }));
     }
