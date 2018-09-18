@@ -2,7 +2,7 @@ version: "2"
 jobs:
   build:
     docker:
-      - image: node:6-slim
+      - image: crichmond1989/svn:node-8-slim
 
     working_directory: ~/repo
 
