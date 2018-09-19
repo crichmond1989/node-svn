@@ -1,0 +1,38 @@
+resources:
+  containers:
+    - container: node_container
+        image: crichmond1989/svn:node-8-slim
+
+pool:
+  vmImage: "Ubuntu 16.04"
+
+steps:
+  - script: npm install
+  - script: npm run lint
+  - script: npm run build
+
+  - task: CopyFiles@2
+      inputs:
+        targetFolder: "$(Build.ArtifactStagingDirectory)"
+        contents: |
+          dist/*
+          LICENSE
+          package.json
+          README.md
+
+  - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: "$(Build.ArtifactStagingDirectory)"
+        artifactName: "dist"
+
+  - script: npm run cover
+
+  - task: PublishTestResults@2
+      inputs:
+        testResultsFiles: "test-results/junit/results.xml"
+
+  - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: Cobertura
+        summaryFileLocation: "coverage/cobertura-coverage.xml"
+        reportDirectory: "coverage"
