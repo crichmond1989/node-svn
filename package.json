@@ -32,7 +32,8 @@
     ],
     "coverageReporters": [
       "text",
-      "cobertura"
+      "cobertura",
+      "html"
     ]
   },
   "jest-junit": {
