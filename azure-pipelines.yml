@@ -12,27 +12,27 @@ steps:
   - script: npm run build
 
   - task: CopyFiles@2
-      inputs:
-        targetFolder: "$(Build.ArtifactStagingDirectory)"
-        contents: |
-          dist/*
-          LICENSE
-          package.json
-          README.md
+    inputs:
+      targetFolder: "$(Build.ArtifactStagingDirectory)"
+      contents: |
+        dist/*
+        LICENSE
+        package.json
+        README.md
 
   - task: PublishBuildArtifacts@1
-      inputs:
-        pathToPublish: "$(Build.ArtifactStagingDirectory)"
-        artifactName: "dist"
+    inputs:
+      pathToPublish: "$(Build.ArtifactStagingDirectory)"
+      artifactName: "dist"
 
   - script: npm run cover
 
   - task: PublishTestResults@2
-      inputs:
-        testResultsFiles: "test-results/junit/results.xml"
+    inputs:
+      testResultsFiles: "test-results/junit/results.xml"
 
   - task: PublishCodeCoverageResults@1
-      inputs:
-        codeCoverageTool: Cobertura
-        summaryFileLocation: "coverage/cobertura-coverage.xml"
-        reportDirectory: "coverage"
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: "coverage/cobertura-coverage.xml"
+      reportDirectory: "coverage"
