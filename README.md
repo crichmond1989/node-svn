@@ -1,5 +1,7 @@
 # @crichmond1989/svn
 
+[![Build Status](https://crichmond1989.visualstudio.com/svn/_apis/build/status/crichmond1989.svn?branchName=master)](https://crichmond1989.visualstudio.com/svn/_build/latest?definitionId=13&branchName=master) [![npm (scoped)](https://img.shields.io/npm/v/@crichmond1989/svn.svg)](https://www.npmjs.com/package/@crichmond1989/svn) [![NPM Size](https://img.shields.io/bundlephobia/minzip/@crichmond1989/svn.svg)](https://bundlephobia.com/result?p=@crichmond1989/svn@1.3.0) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/crichmond1989/svn/blob/master/LICENSE)
+
 NodeJS wrapper for SVN.
 
 ## Preconditions
