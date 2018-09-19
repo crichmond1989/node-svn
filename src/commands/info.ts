@@ -1,8 +1,8 @@
 import InfoOptions from "./infoOptions";
 import InfoResult from "./infoResult";
 
-import parseXml from "../parseXml";
-import spawn from "../spawn";
+import parseXml from "../utils/parseXml";
+import spawn from "../utils/spawn";
 
 export default class {
     options: InfoOptions;

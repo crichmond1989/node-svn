@@ -1,9 +1,9 @@
-import DateFormatter from "../dateFormatter";
+import DateFormatter from "../utils/dateFormatter";
 import LogOptions from "./logOptions";
 import LogResult from "./logResult";
 
-import parseXml from "../parseXml";
-import spawn from "../spawn";
+import parseXml from "../utils/parseXml";
+import spawn from "../utils/spawn";
 
 export default class {
     options: LogOptions;
