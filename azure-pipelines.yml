@@ -8,14 +8,19 @@ pool:
 
 steps:
   - script: npm install
+    displayName: "NPM Install"
+
   - script: npm run lint
+    displayName: "Lint"
+
   - script: npm run build
+    displayName: "Build"
 
   - task: CopyFiles@2
     inputs:
       targetFolder: "$(Build.ArtifactStagingDirectory)"
       contents: |
-        dist/*
+        dist/**
         LICENSE
         package.json
         README.md
@@ -23,7 +28,7 @@ steps:
   - task: PublishBuildArtifacts@1
     inputs:
       pathToPublish: "$(Build.ArtifactStagingDirectory)"
-      artifactName: "dist"
+      artifactName: "artifacts"
 
   - script: npm run cover
 
@@ -34,5 +39,5 @@ steps:
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: Cobertura
-      summaryFileLocation: "coverage/cobertura-coverage.xml"
-      reportDirectory: "coverage"
+      summaryFileLocation: "$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml"
+      reportDirectory: "$(System.DefaultWorkingDirectory)/coverage"
