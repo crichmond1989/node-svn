@@ -13,7 +13,7 @@ describe("returns", () => {
 describe("throws", () => {
     it("error message", async () => {
         try {
-            await spawn("node", resources + "/error-output.js");
+            await spawn("node", "-e", "console.error('error')");
             fail()
         } catch (error) {
             expect(error.message).toBe("error");
@@ -22,7 +22,7 @@ describe("throws", () => {
 
     it("error code", async () => {
         try {
-            await spawn("node", resources + "/error-code.js");
+            await spawn("node", "-e", "process.exit(99)");
             fail()
         } catch (error) {
             expect(error.message).toBe("Exit code: 99")
