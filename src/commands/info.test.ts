@@ -1,10 +1,8 @@
 import Config from "../config";
 import Info from "./info";
-import InfoOptions from "./infoOptions";
 import InfoResult from "./infoResult";
 
 const svnLocal = Config.testSvnLocal;
-const svnUrl = Config.testSvnUrl;
 
 const getRequest = () => ({ source: svnLocal, format: "json" });
 
@@ -42,19 +40,10 @@ describe("format text", () => {
 describe("throws", () => {
     it("source is required", () => {
         try {
-            new Info(null)
+            new Info({ source: null })
             fail();
         } catch (error) {
             expect(error.message).toBe("source is required");
-        }
-    })
-
-    it("must choose between revision or using start and/or end", () => {
-        try {
-            new Info({ ...getRequest(), revision: 1, start: new Date("2018-09-13") });
-            fail();
-        } catch (error) {
-            expect(error.message).toBe("must choose between revision or using start and/or end");
         }
     })
 })

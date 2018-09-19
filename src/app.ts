@@ -9,7 +9,7 @@ import LogResult from "./commands/logResult";
 export default class {
     options: AppOptions;
 
-    constructor(options: AppOptions) {
+    constructor(options?: AppOptions) {
         options = options || new AppOptions();
 
         options.format = options.format || "json";
@@ -18,11 +18,11 @@ export default class {
         this.options = options;
     }
 
-    info(options: InfoOptions): Promise<string | InfoResult[]> {
+    info(options?: InfoOptions): Promise<string | InfoResult[]> {
         return new Info({ ...this.options, ...options }).exec();
     }
 
-    log(options: LogOptions): Promise<string | LogResult[]> {
+    log(options?: LogOptions): Promise<string | LogResult[]> {
         return new Log({ ...this.options, ...options }).exec();
     }
 }

@@ -156,7 +156,7 @@ describe("returns", () => {
 describe("throws", () => {
     it("source is required", async () => {
         try {
-            new Log();
+            new Log({ source: null });
             fail();
         } catch (error) {
             expect(error.message).toBe("source is required");

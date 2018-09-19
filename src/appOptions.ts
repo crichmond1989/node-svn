@@ -1,4 +1,4 @@
 export default class {
-    source: string;
+    source?: string;
     format?: string;
 }
