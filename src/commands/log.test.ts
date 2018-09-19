@@ -73,6 +73,12 @@ describe("uses", () => {
         expect((<LogResult[]>result)[0].date.valueOf()).toBeLessThanOrEqual(end.valueOf());
     })
 
+    it("paths", async () => {
+        const result = await new Log({ ...getRequest(), limit: 1, paths: true }).exec();
+
+        expect((<LogResult[]>result)[0].paths).toHaveLength(1);
+    })
+
     it("1 target", async () => {
         const targets = ["branches/1.8/tools"];
         const result = await new Log({ ...getRequest(), source: svnUrl, limit: 1, targets }).exec();
@@ -88,7 +94,44 @@ describe("uses", () => {
     })
 })
 
+describe("format text", () => {
+    it("revision number", async () => {
+        const revision = 5615;
+        const result = await new Log({ ...getRequest(), limit: 1, revision, format: "text" }).exec();
+
+        expect(result).toMatch(`r${revision}`);
+    })
+
+    it("start", async () => {
+        const start = new Date("2018-01-26");
+        const result = await new Log({ ...getRequest(), limit: 1, start, format: "text" }).exec();
+
+        expect(result).toMatch("2018-01-26");
+    })
+
+    it("paths", async () => {
+        const result = await new Log({ ...getRequest(), limit: 1, paths: true, format: "text" }).exec();
+
+        expect(result).toMatch("Changed paths:");
+    })
+
+    it("1 target", async () => {
+        const targets = ["branches/1.8/tools"];
+        const result = await new Log({ ...getRequest(), source: svnUrl, limit: 1, targets, format: "text" }).exec();
+
+        const matches = (<string>result).split(/r\d+ \|/).length - 1;
+
+        expect(matches).toBe(1);
+    })
+})
+
 describe("returns", () => {
+    it("empty array when over-filtered", async () => {
+        const result = await new Log({ ...getRequest(), limit: 1, start: new Date("2200-01-01") }).exec();
+
+        expect(result).toHaveLength(0);
+    })
+
     it("1 result without path", async () => {
         const result = await new Log({ ...getRequest(), limit: 1 }).exec();
 

@@ -1,9 +1,9 @@
-import DateFormatter from "../dateFormatter";
+import DateFormatter from "../utils/dateFormatter";
 import LogOptions from "./logOptions";
 import LogResult from "./logResult";
 
-import parseXml from "../parseXml";
-import spawn from "../spawn";
+import parseXml from "../utils/parseXml";
+import spawn from "../utils/spawn";
 
 export default class {
     options: LogOptions;
@@ -23,7 +23,7 @@ export default class {
     async exec(): Promise<string | LogResult[]> {
         const args = this.parseArgs();
 
-        const result = await spawn("svn", args);
+        const result = await spawn("svn", ...args);
 
         if (this.options.format == "json")
             return await this.transform(result);

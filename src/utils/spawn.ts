@@ -1,6 +1,6 @@
 import { spawn } from "child_process";
 
-export default function (command: string, args: string[]): Promise<string> {
+export default function (command: string, ...args: string[]): Promise<string> {
     return new Promise<string>((res, rej) => {
         let stdout = "";
         let stderr = "";
@@ -12,12 +12,12 @@ export default function (command: string, args: string[]): Promise<string> {
 
         proc.on("close", code => {
             if (stderr)
-                return rej(new Error(stderr));
+                return rej(new Error(stderr.trim()));
 
             if (code)
                 return rej(new Error(`Exit code: ${code}`));
 
-            return res(stdout);
+            return res(stdout.trim());
         });
     });
 }
