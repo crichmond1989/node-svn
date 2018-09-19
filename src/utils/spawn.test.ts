@@ -1,7 +1,5 @@
 import spawn from "./spawn";
 
-const resources = __dirname + "/../../resources";
-
 describe("returns", () => {
     it("correct standard output", async () => {
         const result = await spawn("echo", "test");
