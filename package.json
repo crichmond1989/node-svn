@@ -5,7 +5,7 @@
   "main": "dist/app",
   "typings": "dist/app",
   "scripts": {
-    "babel": "babel src --out-dir dist --extensions '.ts'",
+    "babel": "babel src --out-dir dist --extensions \".ts\"",
     "build": "npm run types && npm run babel",
     "cover": "jest --coverage",
     "lint": "tslint --project .",
