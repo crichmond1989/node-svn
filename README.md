@@ -38,10 +38,25 @@ apt-get install subversion
 npm install @crichmond1989/svn
 ```
 
-```js
-import svn from "@crichmond1989/svn";
+Local and remote projects use the `source` property.
 
-const client = new svn({source: "C:/Repos/MyProject"});
+### Local
+
+```js
+import Svn from "@crichmond1989/svn";
+
+const client = new Svn({source: "C:/Repos/MyProject"});
+
+const info = await client.info({ recursive: true });
+const log = await client.log({ revision: 3003 });
+```
+
+### Remote
+
+```js
+import Svn from "@crichmond1989/svn";
+
+const client = new Svn({source: "https://svn.code.sf.net/p/svnbook/source"});
 
 const info = await client.info({ recursive: true });
 const log = await client.log({ revision: 3003 });

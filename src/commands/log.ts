@@ -8,9 +8,7 @@ import spawn from "../utils/spawn";
 export default class {
     options: LogOptions;
 
-    constructor(options?: LogOptions) {
-        options = options || new LogOptions();
-
+    constructor(options: LogOptions) {
         if (!options.source)
             throw new Error("source is required");
 

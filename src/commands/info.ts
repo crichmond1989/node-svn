@@ -8,13 +8,8 @@ export default class {
     options: InfoOptions;
 
     constructor(options: InfoOptions) {
-        options = options || new InfoOptions();
-
         if (!options.source)
             throw new Error("source is required");
-
-        if (options.revision && (options.start || options.end))
-            throw new Error("must choose between revision or using start and/or end");
 
         this.options = options;
     }
