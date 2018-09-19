@@ -31,6 +31,7 @@ steps:
       artifactName: "artifacts"
 
   - script: npm run cover
+    displayName: "Test and Code Coverage"
 
   - task: PublishTestResults@2
     inputs:
