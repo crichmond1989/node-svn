@@ -1,7 +1,7 @@
 resources:
   containers:
     - container: node_container
-        image: crichmond1989/svn:node-8-slim
+      image: crichmond1989/svn:node-8-slim
 
 pool:
   vmImage: "Ubuntu 16.04"
