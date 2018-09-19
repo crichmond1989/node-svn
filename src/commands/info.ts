@@ -22,7 +22,7 @@ export default class {
     async exec(): Promise<string | InfoResult[]> {
         const args = this.parseArgs();
 
-        const result = await spawn("svn", args);
+        const result = await spawn("svn", ...args);
 
         if (this.options.format == "json")
             return await this.transform(result);
